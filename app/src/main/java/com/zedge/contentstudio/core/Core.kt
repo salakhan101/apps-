@@ -13,13 +13,13 @@ import java.util.Locale
 import java.util.concurrent.atomic.AtomicLong
 
 // ---------------------------------------------------------------------------
-// Accounts (single Zedge account)
+// Accounts (this bundle runs a single Zedge automation Firebase project)
 // ---------------------------------------------------------------------------
 data class Account(val key: String, val label: String, val databaseUrl: String)
 
 object Accounts {
     val all: List<Account> = listOf(
-        Account("zedge1", "ZEDGE1", "https://zedge1-2624f-default-rtdb.firebaseio.com"), // <-- CONFIG
+        Account("zedge1", "ZEDGE1", "https://zedge1-2624f-default-rtdb.firebaseio.com"),
     )
     val keys: List<String> = all.map { it.key }
     /** Round-robin order used by Multi-Account Distribution. */
@@ -27,7 +27,7 @@ object Accounts {
     fun byKey(key: String): Account = all.firstOrNull { it.key == key } ?: all[0]
     fun isValid(key: String?): Boolean = key != null && all.any { it.key == key }
 
-    const val R2_WORKER_URL = "https://raspy-term-bb6e.salakhan101xxx.workers.dev" // <-- CONFIG: your Cloudflare R2 worker URL
+    const val R2_WORKER_URL = "https://raspy-term-bb6e.salakhan101xxx.workers.dev"
     const val QUEUE_PATH = "wallpaperQueue"
     const val STATE_PATH = "uploadState"
     const val GH_SETTINGS_PATH = "dashboardSettings/ghPanel"
@@ -101,10 +101,10 @@ object ContentTypes {
 }
 
 // ---------------------------------------------------------------------------
-// Real time (server-synced clock) + Dhaka date helpers
+// Real time (server-synced clock) + Riyadh date helpers
 // ---------------------------------------------------------------------------
 object RealTime {
-    val DHAKA: ZoneId = ZoneId.of("Asia/Dhaka")
+    val DHAKA: ZoneId = ZoneId.of("Asia/Riyadh")
     private val offsetMs = AtomicLong(0)
     private val _synced = MutableStateFlow(false)
     val synced: StateFlow<Boolean> = _synced
@@ -124,7 +124,7 @@ object RealTime {
     }
 
     fun dhakaNow(): LocalDateTime = Instant.ofEpochMilli(now()).atZone(DHAKA).toLocalDateTime()
-    /** Epoch ms of `minutesOfDay` on the given Dhaka calendar day. */
+    /** Epoch ms of `minutesOfDay` on the given Riyadh calendar day. */
     fun dhakaEpochMs(day: LocalDate, minutesOfDay: Int): Long =
         day.atStartOfDay(DHAKA).toInstant().toEpochMilli() + minutesOfDay * 60_000L
     fun dhakaDate(offsetDays: Int = 0): LocalDate = dhakaNow().toLocalDate().plusDays(offsetDays.toLong())
@@ -143,7 +143,7 @@ object RealTime {
     /** "06/09/2026 17:59" - same as the dashboard's en-GB stamp for generated set names. */
     fun stamp(): String = LocalDateTime.now().format(stampFmt)
     private val failedFmt = DateTimeFormatter.ofPattern("dd MMM yyyy, HH:mm", Locale.UK)
-    /** Epoch millis -> "08 Sept 2026, 00:34" in Dhaka time. */
+    /** Epoch millis -> "08 Sept 2026, 00:34" in Riyadh time. */
     fun stampOf(ms: Long): String = if (ms <= 0L) "-" else Instant.ofEpochMilli(ms).atZone(DHAKA).toLocalDateTime().format(failedFmt)
 
     private val prettyFmt = DateTimeFormatter.ofPattern("EEE, dd MMM yyyy", Locale.UK)

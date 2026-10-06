@@ -109,7 +109,7 @@ data class QueueFilter(
 /**
  * Search / filter / bulk-delete browser for the queue of the active account.
  * - Search by name / title / tags / category / description
- * - Filter by content type, status and "added" date range (Dhaka days)
+ * - Filter by content type, status and "added" date range (Riyadh days)
  * - "Delete all" removes every item matching the current filter (e.g. all ringtones)
  */
 @Composable

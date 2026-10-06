@@ -390,7 +390,7 @@ fun ItemDetailSheet(vm: MainViewModel, item: QueueItem, onDismiss: () -> Unit) {
                 Spacer(Modifier.height(8.dp))
                 MetaBadge(Icons.Default.ErrorOutline, "Why it failed", UploadErrors.explain(item.error), MaterialTheme.colorScheme.error, lines = 4)
                 if (item.error.isNotBlank()) { Spacer(Modifier.height(8.dp)); MetaBadge(Icons.Default.ErrorOutline, "Raw error", item.error, MaterialTheme.colorScheme.error, lines = 6) }
-                if (item.failedAt > 0) { Spacer(Modifier.height(8.dp)); MetaBadge(Icons.Default.DateRange, "Failed at", RealTime.stampOf(item.failedAt) + " (Dhaka)", MaterialTheme.colorScheme.error) }
+                if (item.failedAt > 0) { Spacer(Modifier.height(8.dp)); MetaBadge(Icons.Default.DateRange, "Failed at", RealTime.stampOf(item.failedAt) + " (Riyadh)", MaterialTheme.colorScheme.error) }
             }
 
             // Tags (live preview of the field below)

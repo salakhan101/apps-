@@ -346,7 +346,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
         }
         if (todo.isEmpty()) { distStatusText.value = "Nothing to distribute."; return }
         val res = repo.distributeFiles(todo, videoType) { i, total, text -> distStatusText.value = text; progress.value = JobProgress("Distributing", text, i, total) }
-        val s = "${res.ok}/${res.total} file(s) sent to ZEDGE1" + (if (res.failed.isNotEmpty()) " - ${res.failed.size} failed" else "")
+        val s = "${res.ok}/${res.total} file(s) distributed to ZEDGE1" + (if (res.failed.isNotEmpty()) " - ${res.failed.size} failed" else "")
         distStatusText.value = s; toast(s, if (res.failed.isEmpty()) "ok" else "warn")
         if (res.failed.isNotEmpty()) alert(res.failed.joinToString("\n"), "Distribution problems")
     }

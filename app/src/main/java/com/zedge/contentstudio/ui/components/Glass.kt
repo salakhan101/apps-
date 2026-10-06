@@ -39,7 +39,7 @@ import java.util.TimeZone
  * - [AuroraBackground]: slowly drifting primary/accent glow blobs behind every screen (theme aware).
  * - [glassLine]: hairline border color for translucent cards.
  * - [AnimatedCount]: numbers count up/down when the value changes.
- * - [DhakaClock]: live HH:MM AM/PM in Asia/Dhaka (bot time).
+ * - [DhakaClock]: live HH:MM AM/PM in Asia/Riyadh (bot time).
  */
 @Composable
 fun AuroraBackground(modifier: Modifier = Modifier, content: @Composable BoxScope.() -> Unit) {
@@ -84,7 +84,7 @@ fun AnimatedCount(value: String, style: TextStyle, color: Color = Color.Unspecif
 }
 
 private fun dhakaClockText(): String {
-    val c = Calendar.getInstance(TimeZone.getTimeZone("Asia/Dhaka"))
+    val c = Calendar.getInstance(TimeZone.getTimeZone("Asia/Riyadh"))
     val h = c.get(Calendar.HOUR_OF_DAY)
     val m = c.get(Calendar.MINUTE)
     val h12 = if (h % 12 == 0) 12 else h % 12

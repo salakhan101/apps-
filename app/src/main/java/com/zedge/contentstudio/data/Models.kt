@@ -175,7 +175,7 @@ data class VarietyConfig(
             "WALLPAPER_BATTERY" to "Battery set", "LIVE_WALLPAPER" to "Live wallpaper", "CHARGING_ANIMATION" to "Charging animation",
         )
         fun label(t: String): String = LABELS[t] ?: t
-        /** Same rotation the workflow uses: start index = Dhaka day number % types.size */
+        /** Same rotation the workflow uses: start index = Riyadh day number % types.size */
         fun orderToday(types: List<String>): List<String> {
             if (types.isEmpty()) return emptyList()
             val dayNo = ((System.currentTimeMillis() + 6L * 3600_000L) / 86_400_000L).toInt()

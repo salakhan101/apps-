@@ -111,7 +111,7 @@ private fun PlannerSlot(index: Int, item: QueueItem?, run: PlannedRun?, hasRuns:
             Text(item?.displayTitle ?: "+ Choose a file", fontSize = 14.sp, lineHeight = 19.sp, fontWeight = FontWeight.Bold, color = colors.onSurface, minLines = 2)
             if (run != null) {
                 Text(run.rangeLabel, fontSize = 12.sp, lineHeight = 16.sp, fontWeight = FontWeight.Medium, color = colors.onSurface)
-                Text("${run.profileLabel} · Dhaka", fontSize = 11.sp, lineHeight = 14.sp, color = colors.onSurfaceVariant)
+                Text("${run.profileLabel} · Riyadh", fontSize = 11.sp, lineHeight = 14.sp, color = colors.onSurfaceVariant)
             } else if (hasRuns) {
                 Text("Daily limit reached · Move this file to another day", fontSize = 11.sp, lineHeight = 15.sp, color = colors.onSurfaceVariant)
             }

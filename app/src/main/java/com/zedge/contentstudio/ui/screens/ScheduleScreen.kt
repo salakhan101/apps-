@@ -233,7 +233,7 @@ fun ScheduleScreen(vm: MainViewModel) {
 
 
         Text("Schedule calendar", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 16.dp))
-        Text("Dhaka time · Estimated slots · Swipe to change day", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp))
+        Text("Riyadh time · Estimated slots · Swipe to change day", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp))
         if (days.isEmpty()) {
             EmptyState("No planned days yet. Upload files to build the schedule.", Modifier.padding(horizontal = 16.dp))
         } else {
@@ -528,7 +528,7 @@ private fun ScheduleSettingsCard(vm: MainViewModel, activeKey: String) {
     val health by vm.gateHealth.collectAsStateWithLifecycle()
     val tick by RealTime.tick.collectAsStateWithLifecycle()
     val slotMap by vm.slots.collectAsStateWithLifecycle()
-    SectionCard(title = "Upload schedule & cron health", subtitle = "3 uploads/day per account \u00b7 Window = random inside 3 h, Exact = that minute sharp (Dhaka). Keep cron-job.org at 0,30 * * * *") {
+    SectionCard(title = "Upload schedule & cron health", subtitle = "3 uploads/day per account \u00b7 Window = random inside 3 h, Exact = that minute sharp (Riyadh). Keep cron-job.org at 0,30 * * * *") {
         Accounts.all.forEach { acc ->
             val live = slotMap[acc.key] ?: SlotSpec.fromWindows(schedules[acc.key] ?: RunSchedule.DEFAULT_WINDOWS.getValue(acc.key))
             var draft by remember(acc.key, live) { mutableStateOf(live) }
@@ -572,7 +572,7 @@ private fun ScheduleSettingsCard(vm: MainViewModel, activeKey: String) {
                     }
                 }
                 if (pickIdx in draft.indices) {
-                    // v23.1 time picker (Asia/Dhaka): field 0 = start / exact time, 1 = window end
+                    // v23.1 time picker (Asia/Riyadh): field 0 = start / exact time, 1 = window end
                     val cur = draft[pickIdx]
                     val isEnd = pickField == 1
                     val initMin = if (isEnd) cur.endMinutesOfDay else cur.minutesOfDay
@@ -582,7 +582,7 @@ private fun ScheduleSettingsCard(vm: MainViewModel, activeKey: String) {
                     AlertDialog(
                         onDismissRequest = { pickIdx = -1 },
                         title = { Text(title, fontSize = 15.sp, fontWeight = FontWeight.Bold) },
-                        text = { Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxWidth()) { TimePicker(state = tp); Text("Time is Asia/Dhaka. $hint", fontSize = 11.sp, color = cs.onSurfaceVariant) } },
+                        text = { Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxWidth()) { TimePicker(state = tp); Text("Time is Asia/Riyadh. $hint", fontSize = 11.sp, color = cs.onSurfaceVariant) } },
                         confirmButton = {
                             TextButton(onClick = {
                                 val idx = pickIdx
@@ -668,7 +668,7 @@ private fun SlotTile(index: Int, slot: SlotSpec, onMode: (Boolean) -> Unit, onPi
             Icon(if (slot.exact) Icons.Default.GpsFixed else Icons.Default.Shuffle, null, Modifier.size(12.dp), tint = if (slot.exact) BrandAmber else cs.onSurfaceVariant)
             Spacer(Modifier.width(6.dp))
             Text(
-                if (slot.exact) "Uploads at ${slot.label} sharp (Dhaka)"
+                if (slot.exact) "Uploads at ${slot.label} sharp (Riyadh)"
                 else "Random minute between ${slot.label} \u2013 ${slot.endLabel}",
                 fontSize = 11.sp, lineHeight = 14.sp, color = cs.onSurfaceVariant, maxLines = 1, overflow = TextOverflow.Ellipsis,
             )
@@ -744,7 +744,7 @@ fun MoveDialog(item: QueueItem, day: PlannedDay, onDismiss: () -> Unit, onMove: 
     }
 }
 
-/** Material date picker that returns a YYYY-MM-DD key (Dhaka calendar day). */
+/** Material date picker that returns a YYYY-MM-DD key (Riyadh calendar day). */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DateKeyPicker(initialKey: String?, onDismiss: () -> Unit, onPick: (String) -> Unit) {

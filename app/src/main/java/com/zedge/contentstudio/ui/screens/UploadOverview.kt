@@ -51,7 +51,7 @@ internal fun TodayRunStrip(
         Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
             Column(Modifier.weight(1f)) {
                 Text("Today's uploads", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold, color = colors.onSurface)
-                Text("Dhaka · All ${Accounts.all.size} accounts", style = MaterialTheme.typography.labelSmall, color = colors.onSurfaceVariant)
+                Text("Riyadh · All ${Accounts.all.size} accounts", style = MaterialTheme.typography.labelSmall, color = colors.onSurfaceVariant)
             }
             Text("Swipe →", style = MaterialTheme.typography.labelSmall, color = colors.onSurfaceVariant)
         }
@@ -132,7 +132,7 @@ internal fun TodayRunStrip(
                                     passed -> "No run recorded in window"
                                     due -> "Awaiting run confirmation"
                                     selected && profile != null -> "Empty slot · $profile"
-                                    else -> "Scheduled · Dhaka time"
+                                    else -> "Scheduled · Riyadh time"
                                 }
                                 Row(Modifier.fillMaxWidth().padding(vertical = 7.dp), verticalAlignment = Alignment.CenterVertically) {
                                     Text(if (done) "✓" else if (missed) "!" else (i + 1).toString().padStart(2, '0'), fontSize = 10.sp, color = if (done) Ok else if (missed) Danger else colors.onSurfaceVariant, modifier = Modifier.width(22.dp))

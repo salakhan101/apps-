@@ -22,7 +22,7 @@ data class PlannedRun(
     val passed: Boolean,       // today only: window already over and this slot did not upload
     val live: Boolean,         // today only: we are inside the run window right now
     val isNext: Boolean,       // first run that has not happened yet
-    val startMs: Long = 0L,    // epoch ms (Dhaka) of the gate slot
+    val startMs: Long = 0L,    // epoch ms (Riyadh) of the gate slot
     val endMs: Long = 0L,      // startMs + max random delay
     val windowEndMs: Long = 0L,
     val exact: Boolean = false, // v23: user pinned an exact upload time for this slot (no random slot / delay)
@@ -51,7 +51,7 @@ data class GateHealth(
 /**
  * v23: one of the 3 daily upload slots of an account (Firebase dashboardSettings/schedule.slots[i]).
  * exact=false -> bot picks a random 30-min slot inside [hour, hour+3h) + 0-14 min (legacy behaviour).
- * exact=true  -> bot uploads at hour:minute sharp (Asia/Dhaka).
+ * exact=true  -> bot uploads at hour:minute sharp (Asia/Riyadh).
  */
 /**
  * v23.1 upload slot. exact=true -> bot uploads at hour:minute sharp.
@@ -130,7 +130,7 @@ object RunSchedule {
     }
     fun hourLabel(h: Int): String { val hh = if (h % 12 == 0) 12 else h % 12; return "$hh:00 " + (if (h >= 12) "PM" else "AM") }
 
-    /** Default window start hours (Asia/Dhaka) per account - same as DEFAULT_WINDOWS in each zedgeN.yml gate job. */
+    /** Default window start hours (Asia/Riyadh) per account - same as DEFAULT_WINDOWS in each zedgeN.yml gate job. */
     val DEFAULT_WINDOWS: Map<String, List<Int>> = mapOf(
         "zedge1" to listOf(10, 15, 20),
     )
